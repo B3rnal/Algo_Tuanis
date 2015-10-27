@@ -1,0 +1,1 @@
+{"asd":{"description":"asd","lat":"9.736128395827308","long":"-84.1387939453125"},"mi punto":{"description":"descripcion","lat":"9.90256858836241","long":"-84.1387939453125"},"testing":{"description":"test test","lat":"10.097318102801049","long":"-84.36264038085938"}}
