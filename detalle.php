@@ -6,18 +6,11 @@
 			$id=$_GET["id"];
 			$sql="Select * from locations where id_location=".$id;
 			$results=$cnx->query($sql);
-			$sql2="Select text_comments from comments where id_locations=".$id;
-			
-			$comment_results=$cnx->query($sql2);
-			
 			$data=null;
 			while($row = $results->fetch_assoc()) {
 				echo "<script type='text/javascript'>var lat=".$row["latitude"].";var long=".$row["longitude"].";</script>";
 				$data=$row;
 			}
-			
-			
-
 		?>
 		<meta charset="UTF-8">
 		<title>AlgoTuanis!</title>
@@ -27,6 +20,7 @@
 		<link rel = "stylesheet" href="css/star-rating.min.css">
 		<link rel = "stylesheet" href="css/maps.css">
 		<link rel = "stylesheet" href="css/maps-custom.css">
+		///////////////////////////////////////////////////////////////////
 	</head>
 
 	<body>
@@ -75,26 +69,19 @@
 				</div>
 				<br/>					
 				<div>
-					<form action = "" class="container" id = "new_comment_form">								
+					<form action = "" class="container">								
 						<div class="form-group">
 							<label for="Mensaje">Dejar un comentario:</label>
-							<textarea class="form-control" id="Comentario" name = "comment_text"placeholder="Escribe un comentario sobre este lugar"></textarea>
+							<textarea class="form-control" id="Comentario" placeholder="Escribe un comentario sobre este lugar"></textarea>
 						</div>							
 						<input id="input-id" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" >
-						<input type="hidden" name="id" value = <?php echo $_GET["id"]?> />
 						<br/>
 						<button type="submit" class="btn btn-primary center-block">Calificar</button><br/>									
 					</form>
 				</div>	
 				<div>
-					<?php
-						while($row = $comment_results->fetch_assoc()) {
-					?>
-						<blockquote><?php echo $row["text_comments"] ?></blockquote> 
-					<?php		
-						}
-					?>
-					 
+					 <blockquote>Esto es un comment de prueba hardcoded</blockquote> 
+					 <blockquote>Esto es otro comment de prueba hardcoded</blockquote> 
 				</div>			
 			</div>			
 		</section>

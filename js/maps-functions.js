@@ -34,13 +34,6 @@ $(document).ready(function(){
 				}
 				if($("#map_view").get(0)){
 					map= L.mapbox.map('map_view', 'mapbox.streets').setView([position.coords.latitude, position.coords.longitude], 15);
-					L.marker([position.coords.latitude, position.coords.longitude], {
-					    icon: L.mapbox.marker.icon({
-					      'marker-color': '#088A29',
-					      'marker-symbol':"star"
-					    }),
-					    draggable: false
-					}).addTo(map);
 					setPoints();
 				}
 		    }, function() {
@@ -71,18 +64,6 @@ $(document).ready(function(){
 		  data: $(this).serialize()
 		}).done(function(data) {
 			window.location.href = "index.html";		
-		});
-	});
-
-
-	$("#new_comment_form").submit(function(e){
-		e.preventDefault();
-		$.ajax({
-		  url: "save_comment.php",
-		  data: $(this).serialize()
-		}).done(function(data) {
-			$("#Comentario").val("");
-			location.reload();		
 		});
 	});
 	
