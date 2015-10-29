@@ -20,7 +20,6 @@
 		<link rel = "stylesheet" href="css/star-rating.min.css">
 		<link rel = "stylesheet" href="css/maps.css">
 		<link rel = "stylesheet" href="css/maps-custom.css">
-		///////////////////////////////////////////////////////////////////
 	</head>
 
 	<body>
