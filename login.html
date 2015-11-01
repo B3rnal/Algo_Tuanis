@@ -4,7 +4,11 @@
 		<title>AlgoTuanis!</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel = "stylesheet" href="css/bootstrap.min.css">
+		<link rel = "stylesheet" href="font-awesome-4.4.0/css/font-awesome.min.css">
+		<link rel = "stylesheet" href="css/bootstrap-social.css">
 		<link rel = "stylesheet" href="css/estilos.css">
+		<link rel = "stylesheet" href="css/maps.css">
+		<link rel = "stylesheet" href="css/maps-custom.css">
 	</head>
 	<body>
 		<header>
@@ -22,8 +26,8 @@
 					<!--Inicia Menu-->
 					<div class="collapse navbar-collapse" id="navegacion-at">
 						<ul class="nav navbar-nav">
-							<li class=""><a href="index.html">Inicio</a></li>
-							<li class="active"><a href="buscar.html">Buscar</a></li>
+							<li class="active"><a href="index.html">Inicio</a></li>
+							<li class=""><a href="buscar.html">Buscar</a></li>
 							<li class=""><a href="perfil.html">Mi Perfil</a></li>
 							<li class=""><a href="calificar.html">Calificar</a></li>
 							<li class=""><a href="ingresarPunto.html">Ingresar Punto</a></li>
@@ -42,20 +46,20 @@
 			</nav>
 		</header>
 		
-		<section class="container">			
-			<div class="container col-xs-12">
-				<form action="" class="">
-					<input type="text" class="form-control" placeholder="Distancia en kilometros"><br/>				
-					
-					<button type="submit" class="btn btn-lg btn-block btn-primary" name="Restaurantes">Restaurantes</button><br/>
-					<button type="submit" class="btn btn-lg btn-block btn-primary" name="Hoteles">Hoteles</button><br/>
-					<button type="submit" class="btn btn-lg btn-block btn-primary" name="Comercios">Comercios</button><br/>
-					<button type="submit" class="btn btn-lg btn-block btn-primary" name="Recomendaciones">Recomendaciones</button>	
-				</form>
-			</div>			
-		</section>		
+		<section class="container">
+			<div  class="col-xs-12 col-sm-8 col-md-9 col-lg-9 jumbotron">
+				<a class="btn btn-lg btn-block btn-social btn-facebook">
+					<i class="fa fa-facebook-official"></i> Inicia Sesion Con Facebook
+				</a><br/>
+				<a class="btn  btn-lg btn-block btn-social btn-google">
+					<i class="fa fa-google"></i> Inicia Sesion Con Google
+				</a>
+			</div>
+		</section>
 		
 		<script src = "js/jquery-1.11.3.min.js"></script>
 		<script src = "js/bootstrap.min.js"></script>
+		<script src = "js/maps.js"></script>
+		<script src = "js/maps-functions.js"></script>
 	</body>
 </html>

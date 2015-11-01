@@ -26,20 +26,10 @@
 					<div class="collapse navbar-collapse" id="navegacion-at">
 						<ul class="nav navbar-nav">
 							<li class=""><a href="index.html">Inicio</a></li>
-							<li class=""><a href="buscar.html">Buscar</a></li>
 							<li class=""><a href="perfil.html">Mi Perfil</a></li>
-							<li class=""><a href="calificar.html">Calificar</a></li>
 							<li class="active"><a href="ingresarPunto.html">Ingresar Punto</a></li>
-						</ul>
-						<form action="" class="navbar-form" role="search">
-							<div class="form-group form-inline">
-								<input type="text" class="form-control" placeholder="Buscar">
-								
-								<button type="submit" class="btn btn-primary">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
-							</div>
-						</form>
+							<li class=""><a href="#">Mis Sitios</a></li>
+						</ul>			
 					</div>
 				</div>				
 			</div>
@@ -48,6 +38,29 @@
 		
 		<section class="main row">
 			<div  class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+				
+				<div id = "form" class = "container">					
+								<!--Div del buscador-->
+								<div class="row buscador">
+									<input type="text" class="form-control" placeholder="Buscar" id="lbBuscar">
+									<button class="btn btn-primary" id="btnBuscar">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+									<button class="btn btn-danger" id="btnCancelar" style = 'display:none'>
+										<span class="glyphicon glyphicon-remove-circle"></span>
+									</button>
+								</div>
+								<!--Div de los checkbox-->	
+								<div id="divCheckbox" style = 'display:none'>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagAlimentacion" value="">Alimentacion</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagHospedaje" value="Hospedaje">Hospedaje</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagSalud" value="Salud">Salud</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagServicio" value="Servicio">Servicio</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagEntretenimiento" value="Entretenimiento">Entretenimiento</label>			  
+								</div>
+				
+				</div>		
+				<hr/>
 				<form action = "" class="container" id="new_place_form">		
 					<div class="form-group">
 						<label for = "Nombre">Nombre del Lugar:</label>			
@@ -94,5 +107,6 @@
 		<script src = "js/jasny-bootstrap.min.js"></script>
 		<script src = "js/maps.js"></script>
 		<script src = "js/maps-functions.js"></script>
+		<script src = "js/js.js"></script>
 	</body>
 </html>

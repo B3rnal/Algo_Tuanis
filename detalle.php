@@ -44,14 +44,14 @@
 							<li class="active"><a href="calificar.html">Calificar</a></li>
 							<li class=""><a href="ingresarPunto.html">Ingresar Punto</a></li>
 						</ul>
-						<form action="" class="navbar-form" role="search">
+						<!--<form action="" class="navbar-form" role="search">
 							<div class="form-group form-inline">
 								<input type="text" class="form-control" placeholder="Buscar">
 								<button type="submit" class="btn btn-primary">
 									<span class="glyphicon glyphicon-search"></span>
 								</button>
 							</div>
-						</form>
+						</form>-->
 					</div>
 				</div>				
 			</div>
@@ -59,7 +59,15 @@
 		</header>
 		
 		<section class="main row">
-			<div  class="col-xs-12 col-sm-8 col-md-9 col-lg-9">			
+			<div  class="col-xs-12 col-sm-8 col-md-9 col-lg-9">	
+				<form action="" class="navbar-form" role="search">
+							<div class="form-group form-inline">
+								<input type="text" class="form-control" placeholder="Buscar">
+								<button type="submit" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>	
+				</form>							
 				<div class="col-sm-12">
 					<h1><?php echo $data["name_location"] ?></h1>
 					<p><?php echo $data["description"] ?></p>
