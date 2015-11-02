@@ -8,6 +8,9 @@
 	padding:0px;
 }
 
+.premium{
+	margin-top:20px;
+}
 footer{
 	background : #2F4F4F;
 	color : #fff;
@@ -77,5 +80,4 @@ blockquote p {
 .post .thumb img{
 	width:100%;
 }
-
 

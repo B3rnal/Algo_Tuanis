@@ -11,5 +11,7 @@ $(document).ready(function(){
 			$('#divCheckbox').hide(); //muestro mediante id
 			$('#btnCancelar').hide();
 			$("#lbBuscar").val("");	
-		});								
+		});	
+
+		
 });

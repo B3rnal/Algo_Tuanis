@@ -22,20 +22,11 @@
 					<!--Inicia Menu-->
 					<div class="collapse navbar-collapse" id="navegacion-at">
 						<ul class="nav navbar-nav">
-							<li class=""><a href="index.html">Inicio</a></li>
-							<li class=""><a href="buscar.html">Buscar</a></li>
-							<li class="active"><a href="perfil.html">Mi Perfil</a></li>
-							<li class=""><a href="calificar.html">Calificar</a></li>
+							<li class="active"><a href="index.html">Inicio</a></li>
+							<li class=""><a href="perfilUsuario.html">Mi Perfil</a></li>
 							<li class=""><a href="ingresarPunto.html">Ingresar Punto</a></li>
-						</ul>
-						<form action="" class="navbar-form" role="search">
-							<div class="form-group form-inline">
-								<input type="text" class="form-control" placeholder="Buscar">
-								<button type="submit" class="btn btn-primary">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
-							</div>
-						</form>
+							<li class=""><a href="#">Mis Sitios</a></li>
+						</ul>			
 					</div>
 				</div>				
 			</div>
@@ -45,13 +36,34 @@
 		<div class="container">
 			<section class="main row">
 			
-				<div  class="col-xs-12">				
+				<div id = "form" class = "container col-xs-12">					
+				
+								<!--Div del buscador-->
+								<div class="row buscador">
+									<input type="text" class="form-control" placeholder="Buscar" id="lbBuscar">
+									<button class="btn btn-primary" id="btnBuscar">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+									<button class="btn btn-danger" id="btnCancelar" style = 'display:none'>
+										<span class="glyphicon glyphicon-remove-circle"></span>
+									</button>
+								</div>
+								<!--Div de los checkbox-->	
+								<div id="divCheckbox" style = 'display:none'>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagAlimentacion" value="">Alimentacion</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagHospedaje" value="Hospedaje">Hospedaje</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagSalud" value="Salud">Salud</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagServicio" value="Servicio">Servicio</label>
+									<label class="checkbox-inline"><input type="checkbox" id = "tagEntretenimiento" value="Entretenimiento">Entretenimiento</label>			  
+								</div>
+				
+				</div>
+			
+				<div  class="col-xs-12">
+					
 					<div class="fondo">					
 						<img src="images/perfil.jpg" class="img-responsive img-circle imgPerfil">	<br/>						
 						<p class="lead text-center"><strong>Adrián Conejo</strong></p>
-						<div class="col-md-offset-5 col-sm-offset-5 col-xs-offset-5">						
-							<a href="" class="btn btn-success">Actualizar</a>					
-						</div>	
 					</div>
 					
 				</div>				
@@ -82,5 +94,6 @@
 		
 		<script src = "js/jquery-1.11.3.min.js"></script>
 		<script src = "js/bootstrap.min.js"></script>
+		<script src = "js/js.js"></script>
 	</body>
 </html>
