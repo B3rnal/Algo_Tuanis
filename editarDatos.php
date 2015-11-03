@@ -1,5 +1,16 @@
+<!DOCTYPE html>
 <html lang = "en">
 	<head>
+	
+	<?php 
+		require "cnx.php";
+		
+		$id=$_GET["id"];
+		$nombre=$_GET["name_location"];
+		$descripcion=$_GET["description"];
+			
+	?>
+
 		<meta charset="UTF-8">
 		<title>AlgoTuanis!</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -61,11 +72,50 @@
 				
 				</div>
 				
-				<!--Div del mapa-->	
-				<div id='map_view'></div>
+				
+				<div class="container">
+					<hr/>
+					<form action = "guardarDatosPremium.php?id=<?php echo $id ?>" method= "post" class="">
+					
+						<div class="form-group">
+							<label for = "nombre">Nombre del Lugar:</label>			
+							<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" value="<?php echo $nombre ?>"/>
+						</div>
+						
+						<div class="form-group">
+							<label for="descripcion">Detalles:</label>
+							<textarea class="form-control" id="detalles" name="detalles" placeholder="Escribe una descripcion detallada del lugar:"><?php echo $descripcion ?></textarea>
+						</div>
+						
+						<div class="form-group">
+							<label for = "nombre">Telefono:</label>			
+							<input class="form-control" id="telefono" name="telefono" type="text" placeholder="Telefono">
+						</div>
+						
+						<div class="form-group">
+							<label for = "nombre">Correo Electronico:</label>			
+							<input class="form-control" id="email" name="email" type="text" placeholder="Escriba su correo electronico">
+						</div>
+						
+						<div class="form-group">
+							<label for = "nombre">Cuenta de Facebook:</label>			
+							<input class="form-control" id="facebook" name="facebook" type="text" placeholder="Escriba la direccion de su cuenta de Facebook">
+						</div>
+						
+						<div class="form-group">
+							<label for = "nombre">Cuenta de Youtube:</label>			
+							<input class="form-control" id="youtube" name="youtube" type="text" placeholder="Escriba la direccion de su cuenta de Youtube">
+						</div>
+											
+						<div class="">
+							<button  type ="submit" class ="btn btn-success center-block">Guardar</button>
+						</div>				
+					</form>
+				</div>		
+
 			</div>
 		</section>	
-				
+		
 		<script src = "js/jquery-1.11.3.min.js"></script>
 		<script src = "js/bootstrap.min.js"></script>
 		<script src = "js/maps.js"></script>
@@ -73,3 +123,6 @@
 		<script src = "js/js.js"></script>
 	</body>
 </html>
+
+
+

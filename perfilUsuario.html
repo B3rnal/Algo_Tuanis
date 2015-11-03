@@ -5,8 +5,6 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel = "stylesheet" href="css/bootstrap.min.css">
 		<link rel = "stylesheet" href="css/estilos.css">
-		<link rel = "stylesheet" href="css/maps.css">
-		<link rel = "stylesheet" href="css/maps-custom.css">
 	</head>
 	<body>
 		<header>
@@ -35,10 +33,10 @@
 			</nav>
 		</header>
 		
-		<section class="main row">
-			<div  class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-				
-				<div id = "form" class = "container">					
+		<div class="container">
+			<section class="main row">
+			
+				<div id = "form" class = "container col-xs-12">					
 				
 								<!--Div del buscador-->
 								<div class="row buscador">
@@ -60,16 +58,42 @@
 								</div>
 				
 				</div>
+			
+				<div  class="col-xs-12">
+					
+					<div class="fondo">					
+						<img src="images/perfil.jpg" class="img-responsive img-circle imgPerfil">	<br/>						
+						<p class="lead text-center"><strong>Adrián Conejo</strong></p>
+					</div>
+					
+				</div>				
 				
-				<!--Div del mapa-->	
-				<div id='map_view'></div>
-			</div>
-		</section>	
-				
+				<div class="col-xs-12 col-xs-offset-2 col-sm-offset-2 ">
+				<hr/>
+					<h3><strong>Lugares Favoritos<strong></h3><br/>
+					<div class = "">
+						<article class="post clearfix ">
+							<a href="#" class="thumb pull-left"><img src="images/1.jpg" ></a>
+							<h3 class="post-title"><a>Restaurante solo bueno</a></h3>
+						</article>						
+						
+						<article class="post clearfix ">
+							<a href="#" class="thumb pull-left"><img src="images/2.jpg" ></a>
+							<h3 class="post-title"><a>Restaurante la muerta de hambre</a></h3>
+						</article>
+						
+						<article class="post clearfix ">
+							<a href="#" class="thumb pull-left"><img src="images/3.jpg" ></a>
+							<h3 class="post-title"><a>Restaurante El Italiano</a></h3>
+						</article>
+					</div>				
+				<div>
+						
+			</section>
+		</div>	
+		
 		<script src = "js/jquery-1.11.3.min.js"></script>
 		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/maps.js"></script>
-		<script src = "js/maps-functions.js"></script>		
 		<script src = "js/js.js"></script>
 	</body>
 </html>
