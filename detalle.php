@@ -11,7 +11,32 @@
 				echo "<script type='text/javascript'>var lat=".$row["latitude"].";var long=".$row["longitude"].";</script>";
 				$data=$row;
 			}
-			
+
+			$sql="Select * from comments where id_locations=".$id;
+			$results=$cnx->query($sql);
+			$data_comments=array();
+			while($row = $results->fetch_assoc()) {
+				$data_comments[]=$row["text_comments"];
+			}
+
+			$sql="Select * from ratings where id_locations=".$id;
+			$results=$cnx->query($sql);
+			$rating_final=0;
+			$count=0;
+			while($row = $results->fetch_assoc()) {
+				$rating_final+=$row["rating"];
+				$count++;
+			}
+			if($rating_final>0){
+				$rating_final=$rating_final/$count;
+			}
+	
+
+			$data["premium"]=true;
+			$data["telefono"]="Telefono quemado para prueba interfaz";
+			$data["email"]="Email quemado para prueba interfaz";
+			$data["facebook"]="FB quemado para prueba interfaz";
+			$data["youtube"]="YT quemado para prueba interfaz"
 		
 		?>
 		<meta charset="UTF-8">
@@ -56,31 +81,20 @@
 		<section class="main row">
 			<div  class="col-xs-12 col-sm-8 col-md-9 col-lg-9">	
 			
-				<div id = "form" class = "container">					
 				
-								<!--Div del buscador-->
-								<div class="row buscador">
-									<input type="text" class="form-control" placeholder="Buscar" id="lbBuscar">
-									<button class="btn btn-primary" id="btnBuscar">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-									<button class="btn btn-danger" id="btnCancelar" style = 'display:none'>
-										<span class="glyphicon glyphicon-remove-circle"></span>
-									</button>
-								</div>
-								<!--Div de los checkbox-->	
-								<div id="divCheckbox" style = 'display:none'>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagAlimentacion" value="">Alimentacion</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagHospedaje" value="Hospedaje">Hospedaje</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagSalud" value="Salud">Salud</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagServicio" value="Servicio">Servicio</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagEntretenimiento" value="Entretenimiento">Entretenimiento</label>			  
-								</div>
-				
-				</div>
-				<hr/>		
 				<div class="col-sm-12">
-					<h1><?php echo $data["name_location"] ?></h1>
+					<h1><?php echo $data["name_location"] ?>
+						<?php 
+							for($i=0; $i<$rating_final; $i++){
+								if($rating_final-$i>1){
+									echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+								}else{
+									echo '<span class="glyphicon glyphicon-star half" aria-hidden="true"></span>';
+								}
+								
+							}
+						?>
+					</h1>
 					<p><?php echo $data["description"] ?></p>
 					<!--<img src="images/rest.jpg" class="img-responsive img-rounded">	-->
 					<div id="map_detalle"></div>				
@@ -115,20 +129,25 @@
 				
 				<br/>					
 				<div>
-					<form action = "" class="container">								
+					<form action = "" class="container" id="new_comment_form">	
+						<input type="hidden" name="id" value=<?php echo $id ?>>							
 						<div class="form-group">
 							<label for="Mensaje">Dejar un comentario:</label>
-							<textarea class="form-control" id="Comentario" placeholder="Escribe un comentario sobre este lugar"></textarea>
+							<textarea  name="comment_text" class="form-control" id="Comentario" placeholder="Escribe un comentario sobre este lugar"></textarea>
 						</div>							
-						<input id="input-id" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm" >
+						<input id="input-id" name="rating" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm">
 						<br/>
 						<button type="submit" class="btn btn-primary center-block">Guardar Comentario</button><br/>									
 					</form>
 					<hr/>
 				</div>	
 				<div>
-					 <blockquote>Esto es un comment de prueba hardcoded</blockquote> 
-					 <blockquote>Esto es otro comment de prueba hardcoded</blockquote> 
+					<?php 
+						foreach ($data_comments as $key => $value) {
+							echo "<blockquote>".$value."</blockquote> ";
+						}
+					?>
+					 
 				</div>				
 
 				<div <?php if($data["premium"] == 1){?> style="display:none"><?php } ?>>

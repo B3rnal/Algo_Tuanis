@@ -1,3 +1,9 @@
+<?php 
+require "cnx.php";
+
+$sql="select * from categorias";
+$categorias=$cnx->query($sql);
+?>
 <html lang = "en">
 	<head>
 		<meta charset="UTF-8">
@@ -35,30 +41,35 @@
 			</nav>
 		</header>
 		
-		<section class="main row">
+		<section  class="main row">
 			<div  class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 				
-				<div id = "form" class = "container">					
+				<div id = "form" class = "container">	
+				<form id="formSearch">				
 				
 								<!--Div del buscador-->
 								<div class="row buscador">
-									<input type="text" class="form-control" placeholder="Buscar" id="lbBuscar">
+									<input type="text" class="form-control " name="search_value" placeholder="Buscar" id="lbBuscar">
 									<button class="btn btn-primary" id="btnBuscar">
 										<span class="glyphicon glyphicon-search"></span>
 									</button>
-									<button class="btn btn-danger" id="btnCancelar" style = 'display:none'>
-										<span class="glyphicon glyphicon-remove-circle"></span>
-									</button>
+									
 								</div>
 								<!--Div de los checkbox-->	
 								<div id="divCheckbox" style = 'display:none'>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagAlimentacion" value="">Alimentacion</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagHospedaje" value="Hospedaje">Hospedaje</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagSalud" value="Salud">Salud</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagServicio" value="Servicio">Servicio</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagEntretenimiento" value="Entretenimiento">Entretenimiento</label>			  
+									<?php
+										while($row = $categorias->fetch_assoc()) {
+									?>
+										<label class="checkbox-inline"><input type="checkbox" name = "categoria[]" value="<?php echo $row['id_categorias'] ?>"><?php echo  utf8_encode($row["nombre_categoria"]) ?></label>	
+									<?php 
+										}
+									?>
+									
+									<button class="btn btn-danger" id="btnCancelar" style = 'display:none'>
+										<span class="glyphicon glyphicon-remove-circle"></span>
+									</button>	  
 								</div>
-				
+				</form>
 				</div>
 				
 				<!--Div del mapa-->	
