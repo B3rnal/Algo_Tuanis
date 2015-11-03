@@ -14,7 +14,8 @@ img {
 	border-radius: 10px;
 }
 #logout {
-	margin-top: 10px;
+	width: 100px;
+	height: 25px;
 }
 centrado{
 	align: center;
@@ -24,7 +25,7 @@ centrado{
   display: inline-block;
   background: #4285f4;
   color: white;
-  width: 190px;
+  width: 100px;
   border-radius: 5px;
   white-space: nowrap;
 }
@@ -33,21 +34,25 @@ centrado{
 }
 span.label {
   font-weight: bold;
+  width: 20px;
 }
 span.icon {
   background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
   display: inline-block;
-  vertical-align: middle;
-  width: 42px;
-  height: 42px;
+  width: 25px;
+  height: 20px;
   border-right: #2265d4 1px solid;
+  font-size: 10px;
+  font-weight: bold;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: 'Roboto', sans-serif;
 }
 span.buttonText {
   display: inline-block;
   vertical-align: middle;
-  padding-left: 42px;
+  padding-left: 0px;
   padding-right: 42px;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: bold;
   /* Use the Roboto font that is loaded in the <head> */
   font-family: 'Roboto', sans-serif;

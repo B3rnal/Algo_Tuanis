@@ -53,7 +53,7 @@
 			
 				<div  class="col-xs-12">				
 					<div class="fondo">					
-						<img src="images/perfil.jpg" class="img-responsive img-circle imgPerfil">	<br/>						
+						<!--<img src="images/perfil.jpg" class="img-responsive img-circle imgPerfil">--><br/>						
 						<!--<p class="lead text-center"><strong>Adrián Conejo</strong></p>
 						<!--<div class="col-md-offset-5 col-sm-offset-5 col-xs-offset-5">						
 							<a href="" class="btn btn-success">Actualizar</a>					
@@ -62,12 +62,12 @@
 						<div class="fb-login-button" data-auto-logout-link="true">
 							<a href="#" id="login" class="fb-login-button">Iniciar sesion</a>
 						</div>
-						<!--<div class="centrado" id="my-signin2"></div>-->
+						<!--<div id="my-signin2"></div>-->
 						<div id="gSignInWrapper">
 							<span class="label"></span>
 							<div id="customBtn" class="customGPlusSignIn">
-							  <span class="icon"></span>
-							  <span class="buttonText">G+ Iniciar sesion</span>
+							  <span class="icon">G+</span>
+							  <span class="buttonText">Iniciar sesion</span>
 							</div>
 						</div>
 					</div>
@@ -116,7 +116,7 @@
 			function renderButton() {
 			  gapi.signin2.render('my-signin2', {
 				'scope': 'https://www.googleapis.com/auth/plus.login',
-				'width': 175,
+				'width': 150,
 				'height': 40,
 				'longtitle': true,
 				'theme': 'dark',
