@@ -6,9 +6,11 @@ $(document).ready(function(){
 	L.mapbox.accessToken = 'pk.eyJ1IjoiYjNybmFsIiwiYSI6ImNpZnhkb2QwdjN6djh1Z2tyamRsamF5OWgifQ.OTgIHG6xF_iy0ACEa7BFdw';
 	// Create a map in the div #map
 	//var map =L.mapbox.map('map', 'b3rnal.cifxdobfz3zwxuum0ymgq9esk');
+	var markerLayer;
 	var map;
 	var marker;
 	var coordinates;
+	var point;
 
 	if($("#map_detalle").get(0)){
 		map= L.mapbox.map('map_detalle', 'mapbox.streets').setView([lat,long], 15);
@@ -34,6 +36,7 @@ $(document).ready(function(){
 				}
 				if($("#map_view").get(0)){
 					map= L.mapbox.map('map_view', 'mapbox.streets').setView([position.coords.latitude, position.coords.longitude], 15);
+					markerLayer = L.mapbox.featureLayer().addTo(map);
 					//puntoActual=almacena el punto de origen
 					var puntoActual = L.marker([position.coords.latitude, position.coords.longitude], {
 					    icon: L.mapbox.marker.icon({
@@ -43,7 +46,7 @@ $(document).ready(function(){
 					    draggable: false
 					}).addTo(map);
 					//point=almacena la latitud y longitud del punto actual para compararlo con la distancia de los demas.
-					var point= puntoActual.getLatLng();
+					point= puntoActual.getLatLng();
 					setPoints(point);
 				}
 		    }, function() {
@@ -88,6 +91,35 @@ $(document).ready(function(){
 			location.reload();		
 		});
 	});
+
+	$("#formSearch").submit(function(e){
+		e.preventDefault();
+		$.ajax({
+		  url: "get_location.php",
+		  data: $(this).serialize()
+		}).done(function(data) {
+			var locations = jQuery.parseJSON(data);
+			markerLayer.clearLayers();
+			$.each(locations, function(i, field){
+				fc=new L.LatLng(field.latitude, field.longitude);
+				distance=fc.distanceTo(point).toFixed(0);
+
+				popupContent="<h1>"+field.name_location+"</h1><p>"+field.description+"</p><p>Distancia:"+distance/1000+" Km</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
+	            marker = L.marker([field.latitude, field.longitude], {
+				    icon: L.mapbox.marker.icon({
+				      'marker-color': '#f86767'
+				    }),
+				    draggable: false
+				}).bindPopup(popupContent,{
+			        closeButton: true,
+			        minWidth: 320
+			    }).addTo(markerLayer);
+			    
+			    
+
+	        });
+		});
+	});
 	
 
 	function setPoints(point){
@@ -108,7 +140,16 @@ $(document).ready(function(){
 			$.each(locations, function(i, field){
 				fc=new L.LatLng(field.latitude, field.longitude);
 				distance=fc.distanceTo(point).toFixed(0);
-				popupContent="<h1>"+field.name_location+"</h1><p>"+field.description+"</p><p>Distancia:"+distance/1000+" Km</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
+				ratingHtml="";
+				for(i=0; i<field.rating; i++){
+					if(field.rating-i>1){
+						ratingHtml+= '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+					}else{
+						ratingHtml+= '<span class="glyphicon glyphicon-star half" aria-hidden="true"></span>';
+					}
+				}
+			
+				popupContent="<h1>"+field.name_location+ratingHtml+"</h1><p>"+field.description+"</p><p>Distancia:"+distance/1000+" Km</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
 	            marker = L.marker([field.latitude, field.longitude], {
 				    icon: L.mapbox.marker.icon({
 				      'marker-color': '#f86767'
@@ -117,7 +158,7 @@ $(document).ready(function(){
 				}).bindPopup(popupContent,{
 			        closeButton: true,
 			        minWidth: 320
-			    }).addTo(map);
+			    }).addTo(markerLayer);
 			    
 			    
 
