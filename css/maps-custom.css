@@ -1,6 +1,6 @@
- body { margin:0; padding:0; }
+ body { margin:0; padding:0;}
 #map_container{position: relative; height: 300px}
-#map { position:absolute; top:0; bottom:0; width:100%; }
+#map { position:absolute; top:0; bottom:0; width:100%;}
 pre.ui-coordinates {
   position:absolute;
   bottom:10px;
@@ -13,5 +13,5 @@ pre.ui-coordinates {
   border-radius:3px;
   }
 
-#map_view { position:absolute; top:0; bottom:0; width:100%; min-height:600px; }
+#map_view { position:relative; top:0; bottom:0; width:100%; min-height:600px; }
 #map_detalle { position:relative;  width:100%; min-height:300px; }
