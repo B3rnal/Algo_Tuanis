@@ -23,10 +23,10 @@ $(document).ready(function(){
 		    navigator.geolocation.getCurrentPosition(function(position) {
 		    	coordinates = document.getElementById('coordinates');
 		    	if($("#map").get(0)){
-					map= L.mapbox.map('map', 'mapbox.streets').setView([position.coords.latitude, position.coords.longitude], 15);
+					map= L.mapbox.map('map', 'mapbox.streets').setView([position.coords.latitude, position.coords.longitude], 17);
 					marker = L.marker([position.coords.latitude, position.coords.longitude], {
 					    icon: L.mapbox.marker.icon({
-					      'marker-color': '#f86767'
+					      'marker-color': '#f86770'
 					    }),
 					    draggable: true
 					}).addTo(map);
@@ -34,14 +34,17 @@ $(document).ready(function(){
 				}
 				if($("#map_view").get(0)){
 					map= L.mapbox.map('map_view', 'mapbox.streets').setView([position.coords.latitude, position.coords.longitude], 15);
-					L.marker([position.coords.latitude, position.coords.longitude], {
+					//puntoActual=almacena el punto de origen
+					var puntoActual = L.marker([position.coords.latitude, position.coords.longitude], {
 					    icon: L.mapbox.marker.icon({
-					      'marker-color': '#088A29',
+					      'marker-color': '#008000',
 					      'marker-symbol':"star"
 					    }),
 					    draggable: false
 					}).addTo(map);
-					setPoints();
+					//point=almacena la latitud y longitud del punto actual para compararlo con la distancia de los demas.
+					var point= puntoActual.getLatLng();
+					setPoints(point);
 				}
 		    }, function() {
 		    	console.log("no lat/long");
@@ -87,7 +90,7 @@ $(document).ready(function(){
 	});
 	
 
-	function setPoints(){
+	function setPoints(point){
 		/*$.getJSON("./locations.txt", function(result){
 	        $.each(result, function(i, field){
 	            marker = L.marker([field.lat, field.long], {
@@ -103,7 +106,9 @@ $(document).ready(function(){
 		}).done(function(data) {
 			var locations = jQuery.parseJSON(data);
 			$.each(locations, function(i, field){
-				popupContent="<h1>"+field.name_location+"</h1><p>"+field.description+"</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
+				fc=new L.LatLng(field.latitude, field.longitude);
+				distance=fc.distanceTo(point).toFixed(0);
+				popupContent="<h1>"+field.name_location+"</h1><p>"+field.description+"</p><p>Distancia:"+distance/1000+" Km</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
 	            marker = L.marker([field.latitude, field.longitude], {
 				    icon: L.mapbox.marker.icon({
 				      'marker-color': '#f86767'
@@ -113,6 +118,8 @@ $(document).ready(function(){
 			        closeButton: true,
 			        minWidth: 320
 			    }).addTo(map);
+			    
+			    
 
 	        });
 		});
