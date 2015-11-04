@@ -1,4 +1,15 @@
+<?php 
+@session_start();
+if(!isset($_SESSION["current_user"])){
+	$host  = $_SERVER['HTTP_HOST'];
+	$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+	$extra = 'index.php';  // change accordingly
 
+	header("Location: http://$host$uri/$extra");
+	exit;
+}
+
+?>
 <html lang = "en">
 	<head>
 		<?php 
@@ -30,13 +41,7 @@
 			if($rating_final>0){
 				$rating_final=$rating_final/$count;
 			}
-	
-
-			$data["premium"]=true;
-			$data["telefono"]="Telefono quemado para prueba interfaz";
-			$data["email"]="Email quemado para prueba interfaz";
-			$data["facebook"]="FB quemado para prueba interfaz";
-			$data["youtube"]="YT quemado para prueba interfaz"
+			
 		
 		?>
 		<meta charset="UTF-8">
@@ -62,15 +67,15 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="index.html" class="navbar-brand">AlgoTuanis!</a>
+							<a href="index.php" class="navbar-brand">AlgoTuanis!</a>
 					</div>
 					<!--Inicia Menu-->
 					<div class="collapse navbar-collapse" id="navegacion-at">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">Inicio</a></li>
-							<li class=""><a href="perfilUsuario.html">Mi Perfil</a></li>
-							<li class=""><a href="ingresarPunto.html">Ingresar Punto</a></li>
-							<li class=""><a href="#">Mis Sitios</a></li>
+							<li class="active"><a href="index.php">Inicio</a></li>
+							<li class=""><a href="perfilUsuario.php">Mi Perfil</a></li>
+							<li class=""><a href="ingresarPunto.php">Ingresar Punto</a></li>
+							<li class=""><a href="misPuntos.php">Mis Sitios</a></li>
 						</ul>			
 					</div>
 				</div>				
@@ -99,36 +104,43 @@
 					<!--<img src="images/rest.jpg" class="img-responsive img-rounded">	-->
 					<div id="map_detalle"></div>				
 				</div>
-				
+				<hr/>		
 				<!-- Div de los datos premium solo se ve si la variable premium es igual a 1-->
-				<div class = "container premium" <?php if($data["premium"] == 0){?> style="display:none"><?php } ?>
-					<br/>
-					 <hr/>
-					 <table>
-						<tr>
-							<div >
-								<td><p><strong>Telefono: </strong></p></td>
-								<td><p><?php echo $data["telefono"] ?></p></td>
-							</div>
-						</tr>
-						<tr>
-							<td><p><strong>Email: </strong></p></td>
-							<td><p> <?php echo $data["email"] ?> </p></td>
-						</tr>
-					 </table>					 
-					<hr/>
+				<div class="col-sm-12">
+				<?php if($data["id_usuario"]!=0){?>
+				
+				
+				
+					<p>
+						Teléfono:<?php echo !empty($data["telefono"])?$data["telefono"]:"No registrado" ?>
+					</p>
+					<p>
+						Email:<?php echo !empty($data["email"])?$data["email"]:"No registrado"?>
+					</p>
 					
 					<a class="btn btn-lg btn-block btn-social btn-facebook" href="<?php echo $data["facebook"] ?>">
 						<i class="fa fa-facebook-official"></i> Buscanos en Facebook
-					</a><br/>
+					</a>
+					<br/>
 					<a class="btn  btn-lg btn-block btn-social btn-google" href="<?php echo $data["youtube"] ?>">
 						<i class="fa fa-youtube"></i> Buscanos en Youtube
 					</a>
-					<hr/>
-				</div>
+					
+					
 				
-				<br/>					
-				<div>
+				<?php }else{ ?>	
+					<form id="form_paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="22PZJ3RXFK9AE">
+						<input type="hidden" id="id_user" value="<?php echo $_SESSION["current_user"]["id_users"] ?>">
+						<input type="hidden" id="id_location" value="<?php echo $id ?>">
+						<input id="btn_paypal" type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+					</form>
+					
+				<?php } ?>
+				</div>
+				<hr/>					
+				<div >
 					<form action = "" class="container" id="new_comment_form">	
 						<input type="hidden" name="id" value=<?php echo $id ?>>							
 						<div class="form-group">
@@ -141,7 +153,7 @@
 					</form>
 					<hr/>
 				</div>	
-				<div>
+				<div class="col-sm-12">
 					<?php 
 						foreach ($data_comments as $key => $value) {
 							echo "<blockquote>".$value."</blockquote> ";
@@ -150,9 +162,7 @@
 					 
 				</div>				
 
-				<div <?php if($data["premium"] == 1){?> style="display:none"><?php } ?>>
-					<a  class ="btn btn-success center-block" href="editarDatos.php?id=<?php echo $id?>&name_location=<?php echo $data["name_location"]?>&description=<?php echo $data["description"]?>&latitud=<?php echo $data["latitude"]?>&longitud=<?php echo $data["longitude"]?>">Premium</a>
-				</div>				
+						
 			</div>	
 
 			

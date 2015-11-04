@@ -41,7 +41,7 @@ $(document).ready(function(){
 					var puntoActual = L.marker([position.coords.latitude, position.coords.longitude], {
 					    icon: L.mapbox.marker.icon({
 					      'marker-color': '#008000',
-					      'marker-symbol':"star"
+					      'marker-symbol':"circle"
 					    }),
 					    draggable: false
 					}).addTo(map);
@@ -103,11 +103,25 @@ $(document).ready(function(){
 			$.each(locations, function(i, field){
 				fc=new L.LatLng(field.latitude, field.longitude);
 				distance=fc.distanceTo(point).toFixed(0);
-
-				popupContent="<h1>"+field.name_location+"</h1><p>"+field.description+"</p><p>Distancia:"+distance/1000+" Km</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
+				ratingHtml="";
+				for(i=0; i<field.rating; i++){
+					if(field.rating-i>1){
+						ratingHtml+= '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+					}else{
+						ratingHtml+= '<span class="glyphicon glyphicon-star half" aria-hidden="true"></span>';
+					}
+				};
+				color="#f86767";
+				symbol="";
+				if(field.id_usuario!=0){
+					color="#FFBF00";
+					symbol="star";
+				}
+				popupContent="<h1>"+field.name_location+ratingHtml+"</h1><p>"+field.description+"</p><p>Distancia:"+distance/1000+" Km</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
 	            marker = L.marker([field.latitude, field.longitude], {
 				    icon: L.mapbox.marker.icon({
-				      'marker-color': '#f86767'
+				      'marker-color': color,
+				      'marker-symbol':symbol
 				    }),
 				    draggable: false
 				}).bindPopup(popupContent,{
@@ -123,16 +137,6 @@ $(document).ready(function(){
 	
 
 	function setPoints(point){
-		/*$.getJSON("./locations.txt", function(result){
-	        $.each(result, function(i, field){
-	            marker = L.marker([field.lat, field.long], {
-				    icon: L.mapbox.marker.icon({
-				      'marker-color': '#f86767'
-				    }),
-				    draggable: false
-				}).addTo(map);
-	        });
-	    });*/
 		$.ajax({
 		  url: "get_location.php"
 		}).done(function(data) {
@@ -147,12 +151,18 @@ $(document).ready(function(){
 					}else{
 						ratingHtml+= '<span class="glyphicon glyphicon-star half" aria-hidden="true"></span>';
 					}
+				};
+				color="#f86767";
+				symbol="";
+				if(field.id_usuario!=0){
+					color="#FFBF00";
+					symbol="star";
 				}
-			
 				popupContent="<h1>"+field.name_location+ratingHtml+"</h1><p>"+field.description+"</p><p>Distancia:"+distance/1000+" Km</p><a href=detalle.php?id="+field.id_location+">Ver Detalles</a>";
 	            marker = L.marker([field.latitude, field.longitude], {
 				    icon: L.mapbox.marker.icon({
-				      'marker-color': '#f86767'
+				      'marker-color': color,
+				      'marker-symbol':symbol
 				    }),
 				    draggable: false
 				}).bindPopup(popupContent,{
@@ -166,6 +176,26 @@ $(document).ready(function(){
 		});
 
 	}
+
+	$('#btn_paypal').click(function(e){
+		e.preventDefault();
+		$.ajax({
+			url: "buy_location.php?id_user="+$("#id_user").val()+"&id_location="+$("#id_location").val(),
+		}).done(function(data) {
+			$("#form_paypal").submit();	
+		});
+		
+	});
+
 	
+	$("#save_place").click(function(e){
+		e.preventDefault();
+		$.ajax({
+			url: "update_location.php",
+			data:$(this).closest("form").serialize()
+		}).done(function(data) {
+			
+		});
+	});
 
 });

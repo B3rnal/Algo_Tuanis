@@ -1,3 +1,14 @@
+<?php
+@session_start();
+if(!isset($_SESSION["current_user"])){
+	$host  = $_SERVER['HTTP_HOST'];
+	$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+	$extra = 'index.php';  // change accordingly
+
+	header("Location: http://$host$uri/$extra");
+	exit;
+}
+ ?>
 <html lang = "en">
 	<head>
 		<meta charset="UTF-8">
@@ -25,9 +36,9 @@
 					<!--Inicia Menu-->
 					<div class="collapse navbar-collapse" id="navegacion-at">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.php">Inicio</a></li>
+							<li class=""><a href="index.php">Inicio</a></li>
 							<li class=""><a href="perfilUsuario.php">Mi Perfil</a></li>
-							<li class=""><a href="ingresarPunto.php">Ingresar Punto</a></li>
+							<li class="active"><a href="ingresarPunto.html">Ingresar Punto</a></li>
 							<li class=""><a href="misPuntos.php">Mis Sitios</a></li>
 						</ul>			
 					</div>
