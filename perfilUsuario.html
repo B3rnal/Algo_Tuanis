@@ -1,10 +1,16 @@
 <html lang = "en">
 	<head>
 		<meta charset="UTF-8">
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="js/face.js"></script>
+		<script src="js/google.js"></script>
 		<title>AlgoTuanis!</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+		<script src="https://apis.google.com/js/api:client.js"></script>
+		<meta name="google-signin-client_id" content="637326049789-35e4huepoe90t9u9sp68t7tumi5aiovb.apps.googleusercontent.com">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<link rel = "stylesheet" href="css/bootstrap.min.css">
-		<link rel = "stylesheet" href="css/estilos.css">
+		<link rel = "stylesheet" href="css/perfil.css">
 	</head>
 	<body>
 		<header>
@@ -22,11 +28,20 @@
 					<!--Inicia Menu-->
 					<div class="collapse navbar-collapse" id="navegacion-at">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">Inicio</a></li>
-							<li class=""><a href="perfilUsuario.html">Mi Perfil</a></li>
+							<li class=""><a href="index.html">Inicio</a></li>
+							<!--<li class=""><a href="buscar.html">Buscar</a></li>-->
+							<li class="active"><a href="perfil.html">Mi Perfil</a></li>
+							<li class=""><a href="calificar.html">Calificar</a></li>
 							<li class=""><a href="ingresarPunto.html">Ingresar Punto</a></li>
-							<li class=""><a href="#">Mis Sitios</a></li>
-						</ul>			
+						</ul>
+						<form action="" class="navbar-form" role="search">
+							<div class="form-group form-inline">
+								<input type="text" class="form-control" placeholder="Buscar">
+								<button type="submit" class="btn btn-primary">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>				
 			</div>
@@ -36,36 +51,26 @@
 		<div class="container">
 			<section class="main row">
 			
-				<div id = "form" class = "container col-xs-12">					
-				
-								<!--Div del buscador-->
-								<div class="row buscador">
-									<input type="text" class="form-control" placeholder="Buscar" id="lbBuscar">
-									<button class="btn btn-primary" id="btnBuscar">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-									<button class="btn btn-danger" id="btnCancelar" style = 'display:none'>
-										<span class="glyphicon glyphicon-remove-circle"></span>
-									</button>
-								</div>
-								<!--Div de los checkbox-->	
-								<div id="divCheckbox" style = 'display:none'>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagAlimentacion" value="">Alimentacion</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagHospedaje" value="Hospedaje">Hospedaje</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagSalud" value="Salud">Salud</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagServicio" value="Servicio">Servicio</label>
-									<label class="checkbox-inline"><input type="checkbox" id = "tagEntretenimiento" value="Entretenimiento">Entretenimiento</label>			  
-								</div>
-				
-				</div>
-			
-				<div  class="col-xs-12">
-					
+				<div  class="col-xs-12">				
 					<div class="fondo">					
-						<img src="images/perfil.jpg" class="img-responsive img-circle imgPerfil">	<br/>						
-						<p class="lead text-center"><strong>Adrián Conejo</strong></p>
+						<!--<img src="images/perfil.jpg" class="img-responsive img-circle imgPerfil">--><br/>						
+						<!--<p class="lead text-center"><strong>Adrián Conejo</strong></p>
+						<!--<div class="col-md-offset-5 col-sm-offset-5 col-xs-offset-5">						
+							<a href="" class="btn btn-success">Actualizar</a>					
+						</div>-->
+						<!--<div id="fb-root"></div>-->
+						<div class="fb-login-button" data-auto-logout-link="true">
+							<a href="#" id="login" class="fb-login-button">Iniciar sesion</a>
+						</div>
+						<!--<div id="my-signin2"></div>-->
+						<div id="gSignInWrapper">
+							<span class="label"></span>
+							<div id="customBtn" class="customGPlusSignIn">
+							  <span class="icon">G+</span>
+							  <span class="buttonText">Iniciar sesion</span>
+							</div>
+						</div>
 					</div>
-					
 				</div>				
 				
 				<div class="col-xs-12 col-xs-offset-2 col-sm-offset-2 ">
@@ -87,13 +92,42 @@
 							<h3 class="post-title"><a>Restaurante El Italiano</a></h3>
 						</article>
 					</div>				
-				<div>
-						
+				<div>		
 			</section>
-		</div>	
-		
+		</div>
+		<!--SDK Facebook-->
+		<script>
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=1170714032956712";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<!--SDK Google-->
+		<script>
+			function onSuccess(googleUser) {
+			  console.log('Conectado: ' + googleUser.getBasicProfile().getName());
+			}
+			function onFailure(error) {
+			  console.log(error);
+			}
+			function renderButton() {
+			  gapi.signin2.render('my-signin2', {
+				'scope': 'https://www.googleapis.com/auth/plus.login',
+				'width': 150,
+				'height': 40,
+				'longtitle': true,
+				'theme': 'dark',
+				'onsuccess': onSuccess,
+				'onfailure': onFailure
+			  });
+			}
+		</script>
+		<script>startApp();</script>
+		<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 		<script src = "js/jquery-1.11.3.min.js"></script>
 		<script src = "js/bootstrap.min.js"></script>
-		<script src = "js/js.js"></script>
 	</body>
 </html>
