@@ -72,17 +72,6 @@
 						<textarea class="form-control" name="description" id="Descripcion" placeholder="Escribe una descripcion del lugar"></textarea>
 					</div>					
 					
-					<!--<div class="form-group">
-						<label>Foto:</label>
-						<div class="fileinput fileinput-new" data-provides="fileinput">
-							<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-								<div>
-									<span class="btn btn-default btn-file btn-sm"><input type="file" name="..."></span>
-									<a href="#" class="btn btn-default fileinput-exists btn-sm" data-dismiss="fileinput">Quitar</a>
-								</div>
-							</div>
-					</div>-->
-					
 					<div class="form-group">
 						<input type="hidden" name="lat" id="lat"/>
 						<input type="hidden" name="long" id="long"/>
@@ -90,10 +79,18 @@
 						<div id="map_container">
 							<div id='map'></div>
 							<pre id='coordinates' class='ui-coordinates'></pre>
-						</div>
-						
+						</div>						
 					</div>
-					<br/>
+					
+					<div id="divCheckbox" class="container">
+									<h3>Tags:</h3>
+									<label class="checkbox-inline"><input type="checkbox" name = "tagAlimentacion" id = "tagAlimentacion" value="Alimentacion">Alimentacion</label>
+									<label class="checkbox-inline"><input type="checkbox" name = "tagHospedaje" id = "tagHospedaje" value="Hospedaje">Hospedaje</label>
+									<label class="checkbox-inline"><input type="checkbox" name = "tagSalud" id = "tagSalud" value="Salud">Salud</label>
+									<label class="checkbox-inline"><input type="checkbox" name = "tagServicio" id = "tagServicio" value="Servicio">Servicio</label>
+									<label class="checkbox-inline"><input type="checkbox" name = "tagEntretenimiento" id = "tagEntretenimiento" value="Entretenimiento">Entretenimiento</label>			  
+					</div>
+					<br/><br/>
 					<button id="save_place" type="submit" class="btn btn-primary center-block">Agregar</button><br/>	
 								
 				</form>
